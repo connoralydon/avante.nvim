@@ -237,10 +237,10 @@ M._defaults = {
   ---@type AvanteSupportedProvider
   gemini = {
     endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
-    model = "gemini-1.5-flash-latest",
+    model = "gemini-2.0-flash",
     timeout = 30000, -- Timeout in milliseconds
     temperature = 0,
-    max_tokens = 20480,
+    max_tokens = 8192,
   },
   ---@type AvanteSupportedProvider
   vertex = {
@@ -285,7 +285,7 @@ M._defaults = {
       model = "claude-3-5-haiku-20241022",
       timeout = 30000, -- Timeout in milliseconds
       temperature = 0,
-      max_tokens = 20480,
+      max_tokens = 8192,
     },
     ---@type AvanteSupportedProvider
     ["claude-opus"] = {
@@ -298,6 +298,18 @@ M._defaults = {
     ["openai-gpt-4o-mini"] = {
       __inherited_from = "openai",
       model = "gpt-4o-mini",
+    },
+    aihubmix = {
+      __inherited_from = "openai",
+      endpoint = "https://aihubmix.com/v1",
+      model = "gpt-4o-2024-11-20",
+      api_key_name = "AIHUBMIX_API_KEY",
+    },
+    ["aihubmix-claude"] = {
+      __inherited_from = "claude",
+      endpoint = "https://aihubmix.com",
+      model = "claude-3-7-sonnet-20250219",
+      api_key_name = "AIHUBMIX_API_KEY",
     },
   },
   ---Specify the special dual_boost mode
@@ -416,6 +428,7 @@ M._defaults = {
     },
     files = {
       add_current = "<leader>ac", -- Add current buffer to selected files
+      add_all_buffers = "<leader>aB", -- Add all buffer files to selected files
     },
     select_model = "<leader>a?", -- Select model command
     select_history = "<leader>ah", -- Select history command

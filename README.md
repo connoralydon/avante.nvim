@@ -26,6 +26,9 @@
 
 **avante.nvim** is a Neovim plugin designed to emulate the behaviour of the [Cursor](https://www.cursor.com) AI IDE. It provides users with AI-driven code suggestions and the ability to apply these recommendations directly to their source files with minimal effort.
 
+[查看中文版](README_zh.md)
+
+
 > [!NOTE]
 >
 > 🥰 This project is undergoing rapid iterations, and many exciting features will be added successively. Stay tuned!
@@ -734,6 +737,23 @@ ollama = {
 > [!NOTE]
 > If you use ollama, the code planning effect may not be ideal, so it is strongly recommended that you enable [cursor-planning-mode](https://github.com/yetone/avante.nvim/blob/main/cursor-planning-mode.md)
 
+## AiHubMix
+
+[AiHubMix](https://s.kiiro.ai/r/PPELHy) is a built-in provider for avante.nvim. You can register an account on the [AiHubMix official website](https://s.kiiro.ai/r/PPELHy), then create an API Key within the website, and set this API Key in your environment variables:
+
+```bash
+export AIHUBMIX_API_KEY=your_api_key
+```
+
+Then in your configuration, set `provider = "aihubmix"`, and set the `model` field to the model name you want to use, for example:
+
+```lua
+provider = "aihubmix",
+aihubmix = {
+  model = "gpt-4o-2024-11-20",
+}
+```
+
 ## Custom providers
 
 Avante provides a set of default providers, but users can also create their own providers.
@@ -1007,12 +1027,26 @@ The high quality and ingenuity of these projects' source code have been immensel
 
 ## Business Sponsors
 
-<div align="center">
-  <a href="https://www.meshy.ai/" target="_blank" align="center">
-    <img height="80" src="https://github.com/user-attachments/assets/1abd8ede-bd98-4e6e-8ee0-5a661b40344a" alt="Meshy AI" />
-    <div>Meshy AI</div>
-  </a>
-</div>
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://s.kiiro.ai/r/ylVbT6" target="_blank">
+        <img height="80" src="https://github.com/user-attachments/assets/1abd8ede-bd98-4e6e-8ee0-5a661b40344a" alt="Meshy AI" /><br/>
+        <strong>Meshy AI</strong>
+        <div>&nbsp;</div>
+        <div>The #1 AI 3D Model Generator for Creators</div>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://s.kiiro.ai/r/mGPJOd" target="_blank">
+        <img height="80" src="https://github.com/user-attachments/assets/7b7bd75e-1fd2-48cc-a71a-cff206e4fbd7" alt="BabelTower API" /><br/>
+        <strong>BabelTower API</strong>
+        <div>&nbsp;</div>
+        <div>No account needed, use any model instantly</div>
+      </a>
+    </td>
+  </tr>
+</table>
 
 ## License
 

@@ -219,7 +219,7 @@ M.returns = {
 }
 
 ---@type AvanteLLMToolFunc<{ rel_path: string, command: string }>
-function M.func(opts, on_log, on_complete)
+function M.func(opts, on_log, on_complete, session_ctx)
   local abs_path = Helpers.get_abs_path(opts.rel_path)
   if not Helpers.has_permission_to_access(abs_path) then return false, "No permission to access path: " .. abs_path end
   if not Path:new(abs_path):exists() then return false, "Path not found: " .. abs_path end
@@ -239,16 +239,18 @@ function M.func(opts, on_log, on_complete)
   if not on_complete then return false, "on_complete not provided" end
   Helpers.confirm(
     "Are you sure you want to run the command: `" .. opts.command .. "` in the directory: " .. abs_path,
-    function(ok)
+    function(ok, reason)
       if not ok then
-        on_complete(false, "User canceled")
+        on_complete(false, "User declined, reason: " .. (reason and reason or "unknown"))
         return
       end
       Utils.shell_run_async(opts.command, "bash -c", function(output, exit_code)
         local result, err = handle_result(output, exit_code)
         on_complete(result, err)
       end, abs_path)
-    end
+    end,
+    { focus = true },
+    session_ctx
   )
 end
 
