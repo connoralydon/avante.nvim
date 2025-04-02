@@ -189,7 +189,8 @@ function M:parse_messages(opts)
 end
 
 function M:parse_response(ctx, data_stream, _, opts)
-  if data_stream:match('"%[DONE%]":') or data_stream:match("%[DONE]%") then
+  -- if data_stream:match('"%[DONE%]":') or data_stream:match("%[DONE]%") then
+  if data_stream:match("%s*%[DONE%]%s*") then
     opts.on_stop({ reason = "complete" })
     return
   end
